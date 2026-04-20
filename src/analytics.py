@@ -1,15 +1,18 @@
 import sys
+from random import randint
 
 class Research():
     def __init__(self, filepath):
         self.filepath = filepath
-        self.calc = self.Calculations()
 
     class Calculations():
-        def counts(self, data):
+        def __init__(self, data):
+            self.data = data
+
+        def counts(self):
             count_heads = 0
             count_tails = 0
-            for pair in data:
+            for pair in self.data:
                 if pair[0] == 1:
                     count_heads += 1
                 else:
@@ -21,6 +24,19 @@ class Research():
             heads_perc = round(heads/summa, 4)
             tails_perc = 1 - heads_perc
             return heads_perc, tails_perc
+
+    class Analytics(Calculations):
+        def predict_random(self, number: int):
+            predictions = list()
+            for i in range(number):
+                heads = randint(0, 1)
+                pair = [heads, 1 - heads]
+                predictions.append(pair)
+            return predictions
+
+        def predict_last(self):
+            last_pair = self.data[-1]
+            return last_pair
 
     def check_content(self, data, has_header):
         self.flag = False
@@ -72,18 +88,21 @@ class Research():
 
 
     def print_data(self, data):
-        heads, tails = self.calc.counts(data)
-        heads_perc, tails_perc = self.calc.fractions(heads, tails)
-        print(data)
+        self.analys = self.Analytics(data)
+        heads, tails = self.analys.counts()
+        heads_perc, tails_perc = self.analys.fractions(heads, tails)
+        predictions = self.analys.predict_random(3)
+        last = self.analys.predict_last()
+        print(self.analys.data)
         print(f'{heads} {tails}')
         print(f'{heads_perc} {tails_perc}')
+        print(predictions)
+        print(last)
 
 
 if __name__ == '__main__':
     if len(sys.argv) == 2:
         filepath = sys.argv[1]
         obj = Research(filepath)
-        data = obj.file_reader(False)
+        data = obj.file_reader()
         obj.print_data(data)
-
-
