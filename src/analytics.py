@@ -1,29 +1,31 @@
-import sys
 from random import randint
+import config
 
 class Research():
-    def __init__(self, filepath):
+    def __init__(self, filepath, has_header=True):
         self.filepath = filepath
+        self.has_header = has_header
 
     class Calculations():
         def __init__(self, data):
             self.data = data
 
         def counts(self):
-            count_heads = 0
-            count_tails = 0
+            self.heads = 0
+            self.tails = 0
             for pair in self.data:
                 if pair[0] == 1:
-                    count_heads += 1
+                    self.heads += 1
                 else:
-                    count_tails += 1
-            return count_heads, count_tails
+                    self.tails += 1
 
-        def fractions(self, heads, tails):
-            summa = heads + tails
-            heads_perc = round(heads/summa, 4)
-            tails_perc = 1 - heads_perc
-            return heads_perc, tails_perc
+
+        def fractions(self):
+            self.counts()
+            summa = self.heads + self.tails
+            self.heads_perc = round(self.heads/summa, 4)
+            self.tails_perc = 1 - self.heads_perc
+
 
     class Analytics(Calculations):
         def predict_random(self, number: int):
@@ -38,11 +40,23 @@ class Research():
             last_pair = self.data[-1]
             return last_pair
 
-    def check_content(self, data, has_header):
+        def save_file(self, data, file_name, extension='txt'):
+            filename = file_name + '.' + extension
+            with open(filename, 'w', encoding='utf-8') as file:
+                file.write(data)
+
+        def num_to_word(self, num: int):
+            ans = num
+            if num >= 0 and num <= 10:
+                ans = config.numbers[num]
+            return ans
+
+
+    def check_content(self, data):
         self.flag = False
         start = 0
         if len(data) > 2:
-            if has_header:
+            if self.has_header:
                 start = 1
                 header = data[0].split(',')
                 if len(header) == 2:
@@ -64,24 +78,22 @@ class Research():
         else:
             self.flag = True
 
-    def file_reader(self, has_header=True) -> list:
+    def file_reader(self) -> list:
         with open(self.filepath, 'r', encoding='utf-8') as file:
             data = file.readlines()
 
-        self.check_content(data, has_header)
+        self.check_content(data)
         if not self.flag:
             start = 0
-            if has_header:
+            if self.has_header:
                 start = 1
-            processed_data = list()
+            self.processed_data = list()
             for i in range(start, len(data)):
                 process = data[i].replace('\n', '').split(',')
                 temp = list()
                 for value in process:
                     temp.append(int(value))
-                processed_data.append(temp)
-
-            return processed_data
+                self.processed_data.append(temp)
         else:
             raise Exception('Incorrect data structure in the file!')
 
@@ -89,20 +101,11 @@ class Research():
 
     def print_data(self, data):
         self.analys = self.Analytics(data)
-        heads, tails = self.analys.counts()
-        heads_perc, tails_perc = self.analys.fractions(heads, tails)
+        self.analys.fractions()
         predictions = self.analys.predict_random(3)
         last = self.analys.predict_last()
         print(self.analys.data)
-        print(f'{heads} {tails}')
-        print(f'{heads_perc} {tails_perc}')
+        print(f'{self.heads} {self.tails}')
+        print(f'{self.heads_perc} {self.tails_perc}')
         print(predictions)
         print(last)
-
-
-if __name__ == '__main__':
-    if len(sys.argv) == 2:
-        filepath = sys.argv[1]
-        obj = Research(filepath)
-        data = obj.file_reader()
-        obj.print_data(data)
