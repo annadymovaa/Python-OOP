@@ -1,4 +1,4 @@
-filepath = '../data.csv'
+filepath = '../datasets/data.csv'
 
 number = 3
 
