@@ -13,7 +13,7 @@ class DataLoader():
         self.has_header = has_header
 
     def check_content(self, data):
-        self.flag = False
+        flag = False
         start = 0
         if len(data) > 2:
             if self.has_header:
@@ -22,10 +22,10 @@ class DataLoader():
                 if len(header) == 2:
                     for word in header:
                         if word == '':
-                            self.flag = True
+                            flag = True
                             break
                 else:
-                    self.flag = True
+                    flag = True
 
             for i in range(start, len(data)):
                 line = data[i].split(',')
@@ -33,18 +33,19 @@ class DataLoader():
                     for value in line:
                         value = value.strip()
                         if value != '1' and value != '0':
-                            self.flag = True
+                            flag = True
                             break
         else:
-            self.flag = True
+            flag = True
         logging.debug('Checking if the file contents are correct')
+        return flag
 
     def file_reader(self) -> list:
         with open(self.filepath, 'r', encoding='utf-8') as file:
             data = file.readlines()
 
-        self.check_content(data)
-        if not self.flag:
+        flag = self.check_content(data)
+        if not flag:
             start = 0
             if self.has_header:
                 start = 1
@@ -120,9 +121,9 @@ class TelegramNotifier():
     def send_message(self, filename):
         message = self.get_message(filename)
 
-        url = f"https://api.telegram.org/bot{token.token}/sendMessage"
+        url = f"https://api.telegram.org/bot{credentials.token}/sendMessage"
         send_inf = {
-            'chat_id': token.chat_id,
+            'chat_id': credentials.chat_id,
             'text': message
             }
         response = requests.post(url, data=send_inf)
