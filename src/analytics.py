@@ -3,7 +3,7 @@ import config
 import logging
 import requests
 import os
-import token
+import credentials
 
 logging.basicConfig(level=logging.DEBUG, filename='analytics.log', format='%(asctime)s %(message)s')
 
@@ -11,6 +11,33 @@ class DataLoader():
     def __init__(self, filepath, has_header=True):
         self.filepath = filepath
         self.has_header = has_header
+
+    def check_content(self, data):
+        self.flag = False
+        start = 0
+        if len(data) > 2:
+            if self.has_header:
+                start = 1
+                header = data[0].split(',')
+                if len(header) == 2:
+                    for word in header:
+                        if word == '':
+                            self.flag = True
+                            break
+                else:
+                    self.flag = True
+
+            for i in range(start, len(data)):
+                line = data[i].split(',')
+                if len(line) == 2:
+                    for value in line:
+                        value = value.strip()
+                        if value != '1' and value != '0':
+                            self.flag = True
+                            break
+        else:
+            self.flag = True
+        logging.debug('Checking if the file contents are correct')
 
     def file_reader(self) -> list:
         with open(self.filepath, 'r', encoding='utf-8') as file:
@@ -23,7 +50,7 @@ class DataLoader():
                 start = 1
             self.processed_data = list()
             for i in range(start, len(data)):
-                process = data[i].replace('\n', '').split(',')
+                process = data[i].strip().split(',')
                 temp = list()
                 for value in process:
                     temp.append(int(value))
