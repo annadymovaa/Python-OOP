@@ -3,6 +3,8 @@ from analytics import *
 
 if __name__ == '__main__':
 
+    logging.basicConfig(level=logging.DEBUG, filename='analytics.log', format='%(asctime)s %(message)s')
+
     obj = DataLoader(filepath)
     obj.file_reader() #obj.processed_data created
 

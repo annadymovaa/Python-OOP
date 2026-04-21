@@ -5,8 +5,6 @@ import requests
 import os
 import credentials
 
-logging.basicConfig(level=logging.DEBUG, filename='analytics.log', format='%(asctime)s %(message)s')
-
 class DataLoader():
     def __init__(self, filepath, has_header=True):
         self.filepath = filepath
