@@ -25,4 +25,4 @@ if __name__ == '__main__':
     data = text.format(summa=summa, tails=tails, heads=heads, tails_perc=tails_perc, heads_perc= heads_perc, number=number, pred_tails=pred_tails, pred_heads=pred_heads)
     filename = obj.save_file(data, file_to_save)
     message = TelegramNotifier()
-    message.send_message('filename')
+    message.send_message(filename)
