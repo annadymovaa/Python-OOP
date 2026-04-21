@@ -11,39 +11,35 @@ class DataLoader():
         self.has_header = has_header
 
     def check_content(self, data):
-        flag = False
         start = 0
-        if len(data) > 2:
-            if self.has_header:
-                start = 1
-                header = data[0].split(',')
-                if len(header) == 2:
-                    for word in header:
-                        if word == '':
-                            flag = True
-                            break
-                else:
-                    flag = True
+        if len(data) < 2:
+            return True
+        if self.has_header:
+            start = 1
+            header = data[0].split(',')
+            if len(header) != 2:
+                return True
+            for word in header:
+                if word == '':
+                    return True
 
-            for i in range(start, len(data)):
-                line = data[i].split(',')
-                if len(line) == 2:
-                    for value in line:
-                        value = value.strip()
-                        if value != '1' and value != '0':
-                            flag = True
-                            break
-        else:
-            flag = True
+        for i in range(start, len(data)):
+            line = data[i].split(',')
+            if len(line) == 2:
+                for value in line:
+                    value = value.strip()
+                    if value != '1' and value != '0':
+                        return True
+
         logging.debug('Checking if the file contents are correct')
-        return flag
+        return False
 
     def file_reader(self) -> list:
         with open(self.filepath, 'r', encoding='utf-8') as file:
             data = file.readlines()
 
-        flag = self.check_content(data)
-        if not flag:
+        error = self.check_content(data)
+        if not error:
             start = 0
             if self.has_header:
                 start = 1
