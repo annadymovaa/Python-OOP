@@ -68,3 +68,53 @@
 2026-04-21 17:08:00,379 Starting new HTTPS connection (1): api.telegram.org:443
 2026-04-21 17:08:01,762 https://api.telegram.org:443 "POST /bot8769295616:AAEFxuET3sPWeEPkkw-58Ntd8pF3KhqxAl4/sendMessage HTTP/1.1" 200 282
 2026-04-21 17:08:01,762 Sending a message to the TG channel
+2026-04-21 17:10:27,796 Checking if the file contents are correct
+2026-04-21 17:10:27,796 Extracting file contents
+2026-04-21 17:10:27,796 Calculating the counts of heads and tails
+2026-04-21 17:10:27,797 Calculating the fractions of heads and tails
+2026-04-21 17:10:27,797 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:10:27,797 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:10:27,797 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:10:27,797 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:10:27,797 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:10:27,797 Predicting 3 tosses
+2026-04-21 17:10:27,797 Calculating the counts of heads and tails
+2026-04-21 17:10:27,797 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:10:27,797 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:10:27,797 Saving the data in a file named report.txt
+2026-04-21 17:10:27,797 Generating a message for the TG channel
+2026-04-21 17:10:27,805 Starting new HTTPS connection (1): api.telegram.org:443
+2026-04-21 17:10:28,214 https://api.telegram.org:443 "POST /bot8769295616:AAEFxuET3sPWeEPkkw-58Ntd8pF3KhqxAl4/sendMessage HTTP/1.1" 200 282
+2026-04-21 17:10:28,215 Sending a message to the TG channel
+2026-04-21 17:16:57,177 Checking if the file contents are correct
+2026-04-21 17:16:57,177 Extracting file contents
+2026-04-21 17:16:57,177 Calculating the counts of heads and tails
+2026-04-21 17:16:57,178 Calculating the fractions of heads and tails
+2026-04-21 17:16:57,178 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:16:57,178 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:16:57,178 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:16:57,178 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:16:57,178 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:16:57,178 Predicting 3 tosses
+2026-04-21 17:16:57,178 Calculating the counts of heads and tails
+2026-04-21 17:16:57,178 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:16:57,178 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:16:57,179 Saving the data in a file named report.txt
+2026-04-21 17:16:57,180 Generating a message for the TG channel
+2026-04-21 17:16:57,190 Starting new HTTPS connection (1): api.telegram.org:443
+2026-04-21 17:17:37,757 Checking if the file contents are correct
+2026-04-21 17:17:37,758 Extracting file contents
+2026-04-21 17:17:37,758 Calculating the counts of heads and tails
+2026-04-21 17:17:37,758 Calculating the fractions of heads and tails
+2026-04-21 17:17:37,758 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:17:37,758 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:17:37,759 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:17:37,759 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:17:37,759 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:17:37,759 Predicting 3 tosses
+2026-04-21 17:17:37,759 Calculating the counts of heads and tails
+2026-04-21 17:17:37,759 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:17:37,759 Turning numbers into words (0-10 works, the rest stay numbers)
+2026-04-21 17:17:37,759 Saving the data in a file named report.txt
+2026-04-21 17:17:37,759 Generating a message for the TG channel
+2026-04-21 17:17:37,770 Starting new HTTPS connection (1): api.telegram.org:443
